@@ -1,0 +1,36 @@
+
+section {
+    height: auto;
+    width: 45%;
+    background-color: powderblue;
+    padding: 10px;
+}
+
+.section1 {
+    float: left;
+}
+
+.section2 {
+    float: right;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+table {
+    padding: 10px;
+}
+
+.col-1 {
+    text-align: left;
+    padding-right: 50px;
+}
+
+.col-2 {
+    text-align: right;
+    padding-left: 50px;
+}

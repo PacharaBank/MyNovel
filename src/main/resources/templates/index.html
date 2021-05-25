@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyNovel</title>
+    <link rel="stylesheet" href="../static/css/body.css" th:href="@{/css/body.css}"/>
+    <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
+            <li th:class="top-left" class="top-left"><a href="">All</a></li>
+            <li th:class="top-right" class="top-right"><a href="">Login</a></li>
+            <li th:class="top-right" class="top-right">
+                <label><a href="">Search</a></label>
+            </li>
+            <li th:class="top-right" class="top-right">
+                <input type="text">
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section th:class="section1">
+        <h2>Recently Read</h2>
+        <div>
+            <img src="../static/images/releaseThatWitch.jpg" th:src="@{/images/releaseThatWitch.jpg}"
+                 alt="release that witch" th:class="center">
+        </div>
+        <div>
+            <h1 th:text="${novel.getName()}">name</h1>
+            <p th:text="'Total Chapter '+ ':'+ ${novel.getTotalChapter()}">total chaper</p>
+            <p th:text="'Rating '+ ':' +${novel.getRate()}">rate</p>
+            <p><b>Synopsis</b></p>
+            <p th:text="${novel.getDetails().getSynopsis()}">detail_synopsis</p>
+            <tr th:each="genre: ${novel.getDetails().getGenreList()}">
+                <td th:text="${genre.getName()}"></td>
+            </tr>
+        </div>
+    </section>
+    <section th:class="section2">
+        <h2>All Novel</h2>
+        <table th:class="center">
+            <thead>
+                <tr>
+                    <th th:class="col-1">Name</th>
+                    <th th:class="col-2">Rate</th>
+                </tr>
+            </thead>
+            <tbody th:each="eachNovel: ${allNovel}">
+                <td th:class="col-1" th:text="${eachNovel.getName()}"></td>
+                <td th:class="col-2" th:text="${eachNovel.getRate()}"></td>
+            </tbody>
+        </table>
+    </section>
+
+</main>
+</body>
+</html>
