@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>MyNovel</title>
@@ -11,9 +12,18 @@
 <header>
     <nav>
         <ul>
+            <li th:class="top-left" class="top-left"><a href="index">MyNovel</a></li>
+            <li th:class="top-left" class="top-left"><a href="new" th:href="new">Add Novel</a></li>
             <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
-            <li th:class="top-left" class="top-left"><a href="">All</a></li>
-            <li th:class="top-right" class="top-right"><a href="login">Login</a></li>
+            <li th:class="top-left" class="top-left"><a href="all">Novel</a></li>
+            <li th:class="top-right" class="top-right">
+                <div sec:authorize="isAuthenticated()" >
+                    <a th:href="@{/logout}">Logout</a>
+                </div>
+                <div sec:authorize="!isAuthenticated()">
+                    <a href="login">Login</a>
+                </div>
+            </li>
             <li th:class="top-right" class="top-right">
                 <label><a href="">Search</a></label>
             </li>
@@ -56,7 +66,12 @@
             </tbody>
         </table>
     </section>
-
+    <!--login/logout -->
+    <section>
+        <div>
+            <sec:authentication property="principal.username" />
+        </div>
+    </section>
 </main>
 </body>
 </html>

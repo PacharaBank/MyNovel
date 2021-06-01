@@ -9,27 +9,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class IndexController {
-
+public class AllNovelController {
     private final NovelService novelService;
 
-    public IndexController(NovelService novelService) {
+    public AllNovelController(NovelService novelService) {
         this.novelService = novelService;
     }
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login";
-    }
 
-    @GetMapping({"/", "/index", ""})
+    @GetMapping("/all")
     public String showIndex(ModelMap model, ModelMap allNovel){
         Novel novel = novelService.findByName("Release That Witch");
         List<Novel> allNovelList = novelService.findAll();
         allNovel.addAttribute("allNovel", allNovelList);
         model.addAttribute("novel", novel);
-        return "index";
+        return "allNovel";
     }
+
 
 
 }

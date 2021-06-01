@@ -16,4 +16,5 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class Role extends BaseEntity {
     private String name;
+
 }

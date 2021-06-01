@@ -44,7 +44,7 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public void save(Source object) {
-        sourceRepository.save(object);
+    public Source save(Source object) {
+       return sourceRepository.save(object);
     }
 }

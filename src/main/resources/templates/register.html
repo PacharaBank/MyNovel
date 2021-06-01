@@ -3,9 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}">
-    <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}"/>
+    <title>Register</title>
 </head>
 <body>
 <header>
@@ -34,26 +32,28 @@
 </header>
 <main>
     <section>
-        <form class="center" th:action="@{/login}" method="post">
-            <h2>Please Login</h2>
-            <div th:if="${param.error}">
-                <span>Invalid Username or Password</span>
+        <form th:action="@{/register}" method="post" th:object="${user}">
+            <div>
+                <label>Firstname</label>
+                <input type="text" required th:field="*{firstName}">
             </div>
             <div>
-                <label>Username  </label>
-                <input type="text" name="username" placeholder="Enter Email">
+                <label>Lastname</label>
+                <input type="text" required th:field="*{lastName}">
             </div>
             <div>
-                <label>Password  </label>
-                <input type="text" name="password" placeholder="Enter Password">
+                <label>Email</label>
+                <input type="text" required th:field="*{email}">
             </div>
             <div>
-                <input type="submit" value="Log In">
+                <label>Password</label>
+                <input type="password" required th:field="*{password}">
+            </div>
+            <div>
+                <input type="submit" value="submit">
+                <a href="/login" th:href="@{/login}">Login</a>
             </div>
         </form>
-    </section>
-    <section>
-        <span class="center">New user ? <a href="/register" th:href="@{/register}">Register</a></span>
     </section>
 </main>
 

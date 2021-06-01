@@ -3,9 +3,9 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}">
+    <title>new</title>
     <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" href="../static/css/addNovelForm.css" th:href="@{/css/addNovelForm.css}"/>
 </head>
 <body>
 <header>
@@ -34,28 +34,37 @@
 </header>
 <main>
     <section>
-        <form class="center" th:action="@{/login}" method="post">
-            <h2>Please Login</h2>
-            <div th:if="${param.error}">
-                <span>Invalid Username or Password</span>
+        <form th:action="@{/new}" th:object="${novel}" method="post">
+            <h2>Add new novel</h2>
+            <div>
+                <label>Name</label>
+                <input class="input" type="text" required th:field="*{name}">
             </div>
             <div>
-                <label>Username  </label>
-                <input type="text" name="username" placeholder="Enter Email">
+                <label>Total Chapter</label>
+                <input class="input" type="text" required th:field="*{totalChapter}">
             </div>
             <div>
-                <label>Password  </label>
-                <input type="text" name="password" placeholder="Enter Password">
+                <label>Rating</label>
+                <input class="input" type="number" required th:field="*{rate}">
             </div>
             <div>
-                <input type="submit" value="Log In">
+                <label>Synopsis</label>
+                <textarea rows="5" cols="50" th:field="*{synopsis}" required></textarea>
+            </div>
+            <div>
+                <label>Genre</label>
+                <select th:field="*{genre}">
+                    <option th:each="genreEach:${genreSelect}"
+                            th:value="${genreEach.getName()}"
+                            th:utext="${genreEach.getName()}"></option>
+                </select>
+            </div>
+            <div>
+                <input type="submit" value="submit">
             </div>
         </form>
     </section>
-    <section>
-        <span class="center">New user ? <a href="/register" th:href="@{/register}">Register</a></span>
-    </section>
 </main>
-
 </body>
 </html>
