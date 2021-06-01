@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>AllNovel</title>
-  <link rel="stylesheet" href="../static/css/body.css" th:href="@{/css/body.css}"/>
   <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}"/>
   <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
 </head>
@@ -12,10 +11,10 @@
  <header>
   <nav>
     <ul>
-      <li th:class="top-left" class="top-left"><a href="index">MyNovel</a></li>
-      <li th:class="top-left" class="top-left"><a href="new" th:href="new">Add Novel</a></li>
+      <li th:class="top-left" class="top-left"><a th:href="@{/index}">MyNovel</a></li>
+      <li th:class="top-left" class="top-left"><a th:href="@{/new}">Add Novel</a></li>
       <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
-      <li th:class="top-left" class="top-left"><a href="all">Novel</a></li>
+      <li th:class="top-left" class="top-left"><a th:href="@{/all}">Novel</a></li>
       <li th:class="top-right" class="top-right">
         <div sec:authorize="isAuthenticated()" >
           <a th:href="@{/logout}">Logout</a>
@@ -34,9 +33,9 @@
   </nav>
 </header>
   <main>
-    <section class="center">
+    <section th:class="full-section-big">
       <h2>All Novel</h2>
-      <table th:class="center">
+      <table>
         <thead>
         <tr>
           <th th:class="col-1">Name</th>
@@ -44,8 +43,14 @@
         </tr>
         </thead>
         <tbody th:each="eachNovel: ${allNovel}">
-        <td th:class="col-1" th:text="${eachNovel.getName()}"></td>
-        <td th:class="col-2" th:text="${eachNovel.getRate()}"></td>
+        <td>
+          <a th:href="@{'/all/' + ${eachNovel.getId()}}">
+            <span th:text="*{eachNovel.getName()}"></span>
+          </a>
+        </td>
+        <td>
+
+        </td>
         </tbody>
       </table>
     </section>

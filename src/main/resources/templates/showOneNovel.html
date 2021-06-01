@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>ShowOneNovel</title>
     <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}"/>
     <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
 </head>
@@ -33,31 +33,23 @@
     </nav>
 </header>
 <main>
-    <section>
-        <form th:action="@{/register}" method="post" th:object="${user}">
-            <div>
-                <label>Firstname</label>
-                <input type="text" required th:field="*{firstName}">
-            </div>
-            <div>
-                <label>Lastname</label>
-                <input type="text" required th:field="*{lastName}">
-            </div>
-            <div>
-                <label>Email</label>
-                <input type="text" required th:field="*{email}">
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="password" required th:field="*{password}">
-            </div>
-            <div>
-                <input type="submit" value="submit">
-                <a href="/login" th:href="@{/login}">Login</a>
-            </div>
-        </form>
+    <section th:class="pos-mid">
+        <h2>Recently Read</h2>
+        <div>
+            <img src="../static/images/releaseThatWitch.jpg" th:src="@{/images/releaseThatWitch.jpg}"
+                 alt="release that witch" th:class="center">
+        </div>
+        <div th:class="center">
+            <h1 th:text="${novel.getName()}">name</h1>
+            <p th:text="'Total Chapter '+ ':'+ ${novel.getTotalChapter()}">total chaper</p>
+            <p th:text="'Rating '+ ':' +${novel.getRate()}">rate</p>
+            <p><b>Synopsis</b></p>
+            <p th:text="${novel.getDetails().getSynopsis()}">detail_synopsis</p>
+            <tr th:each="genre: ${novel.getDetails().getGenreList()}">
+                <td th:text="${genre.getName()}"></td>
+            </tr>
+        </div>
     </section>
 </main>
-
 </body>
 </html>

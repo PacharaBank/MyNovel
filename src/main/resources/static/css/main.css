@@ -1,36 +1,96 @@
+html {
+    background-color: white;
+}
 
-section {
+body {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+div {
+    padding-bottom: 10px;
+}
+
+main {
+    padding-top: 10px;
+}
+
+form {
+    margin: auto;
+    /*border: 1px solid black;*/
+    width: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+}
+
+.pos-mid {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;
+    margin: auto;
+}
+
+
+.half-section {
     height: auto;
     width: 45%;
     background-color: powderblue;
-    padding: 10px;
+    padding: 5px;
+    text-align: left;
 }
 
-.section1 {
+.float-left {
     float: left;
+    height: auto;
+    width: 45%;
+    background-color: powderblue;
+    padding: 5px;
+    text-align: left;
 }
 
-.section2 {
+.float-right {
     float: right;
+    height: auto;
+    width: 45%;
+    background-color: powderblue;
+    padding: 5px;
+    text-align: left;
+}
+
+.full-section {
+    width: fit-content;
+    background-color: powderblue;
+    margin: auto;
+}
+
+.full-section-big {
+    width: 50%;
+    background-color: powderblue;
+    margin: auto;
 }
 
 .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
-
-table {
-    padding: 10px;
+    text-align: center;
 }
 
 .col-1 {
-    text-align: left;
-    padding-right: 50px;
+
 }
 
+table {
+    width: 100%;
+    border: 1px solid black;
+}
+
+thead {
+    text-align: center;
+}
 .col-2 {
-    text-align: right;
-    padding-left: 50px;
+
 }

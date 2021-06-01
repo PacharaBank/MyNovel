@@ -16,4 +16,5 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class Source extends BaseEntity{
     private String name;
+    private String url;
 }

@@ -39,7 +39,8 @@ public class DataLoader implements CommandLineRunner {
         Genre adventure = new Genre("Adventure");
         Genre fantasy = new Genre("Fantasy");
 
-        Source webNovel = new Source("WebNovel");
+        Source webNovel = new Source("WebNovel",
+                "https://www.webnovel.com/book/release-that-witch_7931338406001705");
         releaseThatWitch.setSource(webNovel);
 
         Details releaseWithDetail = new Details();

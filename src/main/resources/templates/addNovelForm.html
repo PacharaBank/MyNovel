@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <title>new</title>
     <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}"/>
-    <link rel="stylesheet" href="../static/css/addNovelForm.css" th:href="@{/css/addNovelForm.css}"/>
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
 </head>
 <body>
 <header>
     <nav>
         <ul>
-            <li th:class="top-left" class="top-left"><a href="index">MyNovel</a></li>
-            <li th:class="top-left" class="top-left"><a href="new" th:href="new">Add Novel</a></li>
+            <li th:class="top-left" class="top-left"><a th:href="@{/index}">MyNovel</a></li>
+            <li th:class="top-left" class="top-left"><a th:href="@{/new}">Add Novel</a></li>
             <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
-            <li th:class="top-left" class="top-left"><a href="all">Novel</a></li>
+            <li th:class="top-left" class="top-left"><a th:href="@{/all}">Novel</a></li>
             <li th:class="top-right" class="top-right">
                 <div sec:authorize="isAuthenticated()" >
                     <a th:href="@{/logout}">Logout</a>
@@ -33,20 +33,20 @@
     </nav>
 </header>
 <main>
-    <section>
+    <section th:class="full-section">
         <form th:action="@{/new}" th:object="${novel}" method="post">
             <h2>Add new novel</h2>
             <div>
                 <label>Name</label>
-                <input class="input" type="text" required th:field="*{name}">
+                <input type="text" required th:field="*{name}">
             </div>
             <div>
                 <label>Total Chapter</label>
-                <input class="input" type="text" required th:field="*{totalChapter}">
+                <input type="text" required th:field="*{totalChapter}">
             </div>
             <div>
                 <label>Rating</label>
-                <input class="input" type="number" required th:field="*{rate}">
+                <input type="number" required th:field="*{rate}">
             </div>
             <div>
                 <label>Synopsis</label>
@@ -58,6 +58,22 @@
                     <option th:each="genreEach:${genreSelect}"
                             th:value="${genreEach.getName()}"
                             th:utext="${genreEach.getName()}"></option>
+                </select>
+            </div>
+            <div>
+                <label>Source</label>
+                <input type="text" required th:field="*{sourceName}">
+            </div>
+            <div>
+                <label>Url</label>
+                <input type="url" required th:field="*{sourceUrl}">
+            </div>
+            <div>
+                <label>Status</label>
+                <select th:field="*{status}">
+                    <option th:each="statusEach:${statusSelect}"
+                            th:value="${statusEach.getName()}"
+                            th:utext="${statusEach.getName()}"></option>
                 </select>
             </div>
             <div>
