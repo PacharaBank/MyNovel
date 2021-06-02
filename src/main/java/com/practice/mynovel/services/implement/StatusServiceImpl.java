@@ -42,6 +42,15 @@ public class StatusServiceImpl implements StatusService {
 
     @Override
     public Status save(Status object) {
-        return statusRepository.save(object);
+        Status status = statusRepository.findByName(object.getName());
+        if (status == null) {
+            status = new Status(object.getName());
+        }
+        return statusRepository.save(status);
+    }
+
+    @Override
+    public Status findByName(String name) {
+        return statusRepository.findByName(name);
     }
 }

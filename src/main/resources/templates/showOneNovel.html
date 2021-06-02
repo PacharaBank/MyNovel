@@ -33,21 +33,32 @@
     </nav>
 </header>
 <main>
-    <section th:class="pos-mid">
-        <h2>Recently Read</h2>
-        <div>
-            <img src="../static/images/releaseThatWitch.jpg" th:src="@{/images/releaseThatWitch.jpg}"
-                 alt="release that witch" th:class="center">
-        </div>
+    <section th:class="full-section-big">
+        <h2 th:class="center">Recently Read</h2>
         <div th:class="center">
-            <h1 th:text="${novel.getName()}">name</h1>
-            <p th:text="'Total Chapter '+ ':'+ ${novel.getTotalChapter()}">total chaper</p>
-            <p th:text="'Rating '+ ':' +${novel.getRate()}">rate</p>
-            <p><b>Synopsis</b></p>
-            <p th:text="${novel.getDetails().getSynopsis()}">detail_synopsis</p>
-            <tr th:each="genre: ${novel.getDetails().getGenreList()}">
-                <td th:text="${genre.getName()}"></td>
-            </tr>
+            <img src="../static/images/releaseThatWitch.jpg" th:src="@{/images/releaseThatWitch.jpg}"
+                 alt="release that witch" width="450px">
+        </div>
+        <div>
+            <h2 th:text="${novel.getName()}">name</h2>
+            <p th:text="'Total Chapter : ' + ${novel.getTotalChapter()}"></p>
+            <p th:text="'Rating :' + ${novel.getRate()}"></p>
+            <p th:text="'Synopsis : ' + ${novel.getDetails().getSynopsis()}"></p>
+            <p>
+                <span>Tag : </span>
+                <tr th:each="genre: ${novel.getDetails().getGenreList()}">
+                    <td th:text="${genre.getName()}"></td>
+                </tr>
+            </p>
+            <p th:text="'Status : ' + ${novel.getDetails().getStatus().getName()}"></p>
+            <p>
+                <span>Source :</span>
+                <a th:href="${novel.getSource().getUrl()}"
+                   th:text="${novel.getSource().getName()}"></a>
+            </p>
+        </div>
+        <div>
+            <a th:href="@{'/all/' + ${novel.getId()} + '/update'}"><input type="button" value="Update"></a>
         </div>
     </section>
 </main>

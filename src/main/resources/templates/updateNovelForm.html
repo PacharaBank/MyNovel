@@ -34,23 +34,26 @@
 </header>
 <main>
     <section th:class="full-section">
-        <form th:action="@{/new}" th:object="${novel}" method="post">
-            <h2>Add new novel</h2>
+        <form th:action="@{'/all/' + ${updateNovel.getId()} + '/update'}" th:object="${novel}" method="post">
+            <h2 th:class="center">Update novel</h2>
             <div>
                 <label>Name</label>
-                <input type="text" required th:field="*{name}">
+                    <input type="text" required th:name="name"
+                           th:value="${updateNovel.getName()}"/>
             </div>
             <div>
                 <label>Total Chapter</label>
-                <input type="text" required th:field="*{totalChapter}">
+                <input type="text" th:name="totalChapter"
+                       required th:value="${updateNovel.getTotalChapter()}">
             </div>
             <div>
                 <label>Rating</label>
-                <input type="text" required th:field="*{rate}">
+                <input type="text" th:name="rate" required th:value="${updateNovel.getRate()}">
             </div>
             <div>
-                <label>Synopsis</label>
-                <textarea rows="5" cols="50" th:field="*{synopsis}" required></textarea>
+                <label th:class="float-left-only">Synopsis</label>
+                <textarea th:name="synopsis"
+                          th:text="${updateNovel.getDetails().getSynopsis()}" required></textarea>
             </div>
             <div>
                 <label>Genre</label>
@@ -62,11 +65,13 @@
             </div>
             <div>
                 <label>Source</label>
-                <input type="text" required th:field="*{sourceName}">
+                <input type="text" th:name="sourceName"
+                       required th:value="${updateNovel.getSource().getName()}">
             </div>
             <div>
                 <label>Url</label>
-                <input type="url" required th:field="*{sourceUrl}">
+                <input type="url" th:name="sourceUrl"
+                       required th:value="${updateNovel.getSource().getUrl()}">
             </div>
             <div>
                 <label>Status</label>

@@ -29,6 +29,12 @@ label {
     text-align: left;
 }
 
+textarea {
+    width: 400px;
+    height: 300px;
+    resize: none;
+}
+
 .pos-mid {
     padding-left: 5%;
     padding-right: 5%;
@@ -52,6 +58,14 @@ label {
     background-color: powderblue;
     padding: 5px;
     text-align: left;
+}
+
+.float-left-only {
+    float: left;
+}
+
+.float-right-only {
+    float: right;
 }
 
 .float-right {
@@ -79,18 +93,12 @@ label {
     text-align: center;
 }
 
-.col-1 {
-
-}
 
 table {
     width: 100%;
-    border: 1px solid black;
 }
 
 thead {
     text-align: center;
 }
-.col-2 {
 
-}

@@ -6,7 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table
@@ -16,13 +19,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Novel extends BaseEntity{
     private String name;
-    private int totalChapter;
-    private int rate;
+    private String totalChapter;
+    private String rate;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     private Details details;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne(cascade = {CascadeType.ALL})
     private Source source;
 }

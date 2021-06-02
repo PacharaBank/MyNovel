@@ -2,31 +2,31 @@ package com.practice.mynovel.services.implement;
 
 import com.practice.mynovel.Dto.NovelDto;
 import com.practice.mynovel.models.*;
-import com.practice.mynovel.respositories.DetailsRepository;
-import com.practice.mynovel.respositories.GenreRepository;
 import com.practice.mynovel.respositories.NovelRepository;
-import com.practice.mynovel.respositories.StatusRepository;
-import com.practice.mynovel.services.NovelService;
-import com.practice.mynovel.services.SourceService;
+import com.practice.mynovel.services.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NovelServiceImpl implements NovelService {
     private final NovelRepository novelRepository;
-    private final DetailsRepository detailsRepository;
-    private final GenreRepository genreRepository;
-    private final StatusRepository statusRepository;
+    private final DetailService detailService;
+    private final GenreService genreService;
+    private final StatusService statusService;
     private final SourceService sourceService;
 
     public NovelServiceImpl(NovelRepository novelRepository,
-                            DetailsRepository detailsRepository,
-                            GenreRepository genreRepository, StatusRepository statusRepository, SourceService sourceService) {
+                            DetailService detailService,
+                            GenreService genreService,
+                            StatusService statusService,
+                            SourceService sourceService) {
         this.novelRepository = novelRepository;
-        this.detailsRepository = detailsRepository;
-        this.genreRepository = genreRepository;
-        this.statusRepository = statusRepository;
+        this.detailService = detailService;
+        this.genreService = genreService;
+        this.statusService = statusService;
         this.sourceService = sourceService;
     }
 
@@ -79,16 +79,51 @@ public class NovelServiceImpl implements NovelService {
         details.setNovel(novel);
         details.setSynopsis(novelDto.getSynopsis());
 
-        Status status = statusRepository.findByName(novelDto.getStatus());
+        Source source = new Source(novelDto.getSourceName(), novelDto.getSourceUrl());
+        source.setNovel(novel);
+        novel.setSource(source);
+
+        Status status = statusService.findByName(novelDto.getStatus());
         details.setStatus(status);
-        Genre genre = genreRepository.findByName(novelDto.getName());
+
+        Genre genre = genreService.findByName(novelDto.getName());
         details.getGenreList().add(genre);
+
+        details.setNovel(novel);
         novel.setDetails(details);
 
-        Source source = new Source();
+        return novelRepository.save(novel);
+    }
+
+    @Override
+    public Novel update(NovelDto novelDto, Long id) {
+        Optional<Novel> novelOptional = novelRepository.findById(id);
+
+        Novel novel = novelOptional.get();
+        novel.setName(novelDto.getName());
+        novel.setRate(novelDto.getRate());
+        novel.setTotalChapter(novelDto.getTotalChapter());
+
+        Details details = detailService.findById(novel.getDetails().getId());
+        details.setSynopsis(novelDto.getSynopsis());
+
+        Source source = sourceService.findById(novel.getSource().getId());
         source.setName(novelDto.getSourceName());
         source.setUrl(novelDto.getSourceUrl());
+        source.setNovel(novel);
         novel.setSource(source);
+
+        Status status = statusService.findByName(novelDto.getStatus());
+        details.setStatus(status);
+
+        Genre genre = genreService.findByName(novelDto.getGenre());
+        List<Genre> genreList = new ArrayList<>();
+        genreList.add(genre);
+        details.setGenreList(genreList);
+
+        details.setNovel(novel);
+        novel.setDetails(details);
+
         return novelRepository.save(novel);
     }
 

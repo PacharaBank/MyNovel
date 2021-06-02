@@ -23,10 +23,10 @@ public class Details extends BaseEntity {
     @OneToOne
     private Novel novel;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE})
     private Status status;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.MERGE})
     private List<Genre> genreList;
 
     public List<Genre> getGenreList() {

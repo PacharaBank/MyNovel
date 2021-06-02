@@ -34,22 +34,26 @@
 </header>
   <main>
     <section th:class="full-section-big">
-      <h2>All Novel</h2>
+      <h2 th:class="center">All Novel</h2>
       <table>
         <thead>
         <tr>
-          <th th:class="col-1">Name</th>
-          <th th:class="col-2">Rate</th>
+          <th >Name</th>
+          <th >Rate</th>
+          <th >Total Chapter</th>
         </tr>
         </thead>
         <tbody th:each="eachNovel: ${allNovel}">
-        <td>
+        <td th:class="center">
           <a th:href="@{'/all/' + ${eachNovel.getId()}}">
             <span th:text="*{eachNovel.getName()}"></span>
           </a>
         </td>
-        <td>
-
+        <td th:class="center">
+          <span th:text="*{eachNovel.getRate()}"></span>
+        </td>
+        <td th:class="center">
+          <span th:text="*{eachNovel.getTotalChapter()}"></span>
         </td>
         </tbody>
       </table>

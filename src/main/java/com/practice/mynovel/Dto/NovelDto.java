@@ -12,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class NovelDto {
     private String name;
-    private int totalChapter;
-    private int rate;
+    private String totalChapter;
+    private String rate;
 
     //details
     private String synopsis;

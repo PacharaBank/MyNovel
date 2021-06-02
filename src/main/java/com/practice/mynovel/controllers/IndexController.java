@@ -25,9 +25,11 @@ public class IndexController {
     @GetMapping({"/", "/index", ""})
     public String showIndex(ModelMap model, ModelMap allNovel){
         Novel novel = novelService.findByName("Release That Witch");
-        List<Novel> allNovelList = novelService.findAll();
-        allNovel.addAttribute("allNovel", allNovelList);
-        model.addAttribute("novel", novel);
+        if (novel != null) {
+            List<Novel> allNovelList = novelService.findAll();
+            allNovel.addAttribute("allNovel", allNovelList);
+            model.addAttribute("novel", novel);
+        }
         return "index";
     }
 

@@ -7,4 +7,5 @@ public interface NovelService extends CrudService<Novel, NovelDto, Long> {
     Novel findByName(String name);
     void deleteByName(String name);
     Novel save(NovelDto novelDto);
+    Novel update(NovelDto novelDto, Long id);
 }

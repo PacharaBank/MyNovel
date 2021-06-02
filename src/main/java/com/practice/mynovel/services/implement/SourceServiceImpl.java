@@ -47,4 +47,9 @@ public class SourceServiceImpl implements SourceService {
     public Source save(Source object) {
        return sourceRepository.save(object);
     }
+
+    @Override
+    public Source findByName(String name) {
+        return sourceRepository.findByName(name);
+    }
 }

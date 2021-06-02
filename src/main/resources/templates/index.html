@@ -33,7 +33,7 @@
     </nav>
 </header>
 <main>
-    <section th:class="float-left">
+    <section th:class="float-left" th:if="${novel}!=null">
         <article>
             <h2 th:class="center">Recently Read</h2>
             <div th:class="center">
@@ -42,7 +42,7 @@
             </div>
             <div>
                 <h1 th:text="${novel.getName()}">name</h1>
-                <p th:text="'Total Chapter '+ ':'+ ${novel.getTotalChapter()}">total chaper</p>
+                <p th:text="'Total Chapter '+ ':'+ ${novel.getTotalChapter()}" >total chapter</p>
                 <p th:text="'Rating '+ ':' +${novel.getRate()}">rate</p>
                 <p><b>Synopsis</b></p>
                 <p th:text="${novel.getDetails().getSynopsis()}">detail_synopsis</p>
