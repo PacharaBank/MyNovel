@@ -16,12 +16,12 @@
             <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/all}">Novel</a></li>
             <li th:class="top-right" class="top-right">
-                <div sec:authorize="isAuthenticated()" >
+                <span sec:authorize="isAuthenticated()">
                     <a th:href="@{/logout}">Logout</a>
-                </div>
-                <div sec:authorize="!isAuthenticated()">
-                    <a href="login">Login</a>
-                </div>
+                </span>
+                <span sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/login}">Login</a>
+                </span>
             </li>
             <li th:class="top-right" class="top-right">
                 <label><a href="">Search</a></label>
@@ -50,15 +50,17 @@
             </div>
             <div>
                 <label>Synopsis</label>
-                <textarea rows="5" cols="50" th:field="*{synopsis}" required></textarea>
+                <textarea th:field="*{synopsis}" required></textarea>
             </div>
             <div>
                 <label>Genre</label>
-                <select th:field="*{genre}">
-                    <option th:each="genreEach:${genreSelect}"
-                            th:value="${genreEach.getName()}"
-                            th:utext="${genreEach.getName()}"></option>
-                </select>
+                <span th:each="genre, itemStat : *{genreList}">
+                    <select th:field="*{genreList[__${itemStat.index}__].name}">
+                        <option th:each="genreEach:${genreSelect}"
+                                th:value="${genreEach.getName()}"
+                                th:text="${genreEach.getName()}"></option>
+                    </select>
+                </span>
             </div>
             <div>
                 <label>Source</label>
@@ -73,7 +75,7 @@
                 <select th:field="*{status}">
                     <option th:each="statusEach:${statusSelect}"
                             th:value="${statusEach.getName()}"
-                            th:utext="${statusEach.getName()}"></option>
+                            th:text="${statusEach.getName()}"></option>
                 </select>
             </div>
             <div>

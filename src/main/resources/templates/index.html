@@ -16,12 +16,12 @@
             <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/all}">Novel</a></li>
             <li th:class="top-right" class="top-right">
-                <div sec:authorize="isAuthenticated()" >
+                <span sec:authorize="isAuthenticated()">
                     <a th:href="@{/logout}">Logout</a>
-                </div>
-                <div sec:authorize="!isAuthenticated()">
-                    <a href="login">Login</a>
-                </div>
+                </span>
+                <span sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/login}">Login</a>
+                </span>
             </li>
             <li th:class="top-right" class="top-right">
                 <label><a href="">Search</a></label>
@@ -44,11 +44,19 @@
                 <h1 th:text="${novel.getName()}">name</h1>
                 <p th:text="'Total Chapter '+ ':'+ ${novel.getTotalChapter()}" >total chapter</p>
                 <p th:text="'Rating '+ ':' +${novel.getRate()}">rate</p>
-                <p><b>Synopsis</b></p>
-                <p th:text="${novel.getDetails().getSynopsis()}">detail_synopsis</p>
-                <tr th:each="genre: ${novel.getDetails().getGenreList()}">
-                    <td th:text="${genre.getName()}"></td>
-                </tr>
+                <p th:text="'Synopsis : ' + ${novel.getDetails().getSynopsis()}">detail_synopsis</p>
+                <div>
+                    <span>Genre : </span>
+                    <tr th:each="genre: ${novel.getDetails().getGenreList()}">
+                        <td th:if="${genre.getName()!='-'}" th:text="${genre.getName()}"></td>
+                    </tr>
+                </div>
+                <p th:text="'Status : '+ ${novel.getDetails().getStatus().getName()}"></p>
+                <div>
+                    <span>Source : </span>
+                    <a th:text="${novel.getSource().getName()}"
+                       th:href="${novel.getSource().getUrl()}"></a>
+                </div>
             </div>
         </article>
     </section>

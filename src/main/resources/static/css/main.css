@@ -27,10 +27,11 @@ label {
     display: inline-block;
     width: 100px;
     text-align: left;
+    float: left;
 }
 
 textarea {
-    width: 400px;
+    width: 350px;
     height: 300px;
     resize: none;
 }

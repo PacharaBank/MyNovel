@@ -32,6 +32,7 @@ public class DataLoader implements CommandLineRunner {
         genreService.save(new Genre("Action"));
         genreService.save(new Genre("Adventure"));
         genreService.save(new Genre("Fantasy"));
+        genreService.save(new Genre("-"));
 
         statusService.save(new Status("Finished"));
         statusService.save(new Status("Ongoing"));

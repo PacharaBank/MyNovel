@@ -16,12 +16,12 @@
             <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/all}">Novel</a></li>
             <li th:class="top-right" class="top-right">
-                <div sec:authorize="isAuthenticated()" >
+                <span sec:authorize="isAuthenticated()">
                     <a th:href="@{/logout}">Logout</a>
-                </div>
-                <div sec:authorize="!isAuthenticated()">
-                    <a href="login">Login</a>
-                </div>
+                </span>
+                <span sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/login}">Login</a>
+                </span>
             </li>
             <li th:class="top-right" class="top-right">
                 <label><a href="">Search</a></label>
@@ -34,48 +34,51 @@
 </header>
 <main>
     <section th:class="full-section">
-        <form th:action="@{'/all/' + ${updateNovel.getId()} + '/update'}" th:object="${novel}" method="post">
+        <form th:action="@{'/all/' + ${oldNovelDto.getNovel().getId()} + '/update'}"
+              th:object="${oldNovelDto}" method="post">
             <h2 th:class="center">Update novel</h2>
             <div>
                 <label>Name</label>
                     <input type="text" required th:name="name"
-                           th:value="${updateNovel.getName()}"/>
+                           th:value="${oldNovelDto.getName()}"/>
             </div>
             <div>
                 <label>Total Chapter</label>
                 <input type="text" th:name="totalChapter"
-                       required th:value="${updateNovel.getTotalChapter()}">
+                       required th:value="${oldNovelDto.getTotalChapter()}">
             </div>
             <div>
                 <label>Rating</label>
-                <input type="text" th:name="rate" required th:value="${updateNovel.getRate()}">
+                <input type="text" th:name="rate" required th:value="${oldNovelDto.getRate()}">
             </div>
             <div>
-                <label th:class="float-left-only">Synopsis</label>
+                <label>Synopsis</label>
                 <textarea th:name="synopsis"
-                          th:text="${updateNovel.getDetails().getSynopsis()}" required></textarea>
+                          th:text="${oldNovelDto.getSynopsis()}" required></textarea>
             </div>
             <div>
                 <label>Genre</label>
-                <select th:field="*{genre}">
-                    <option th:each="genreEach:${genreSelect}"
-                            th:value="${genreEach.getName()}"
-                            th:utext="${genreEach.getName()}"></option>
-                </select>
+                <span th:each="genre, itemStat : *{genreList}">
+                    <select th:field="*{genreList[__${itemStat.index}__].name}">
+                        <option th:each="genreEach:${genreSelect}"
+                                th:value="${genreEach.getName()}"
+                                th:text="${genreEach.getName()}"></option>
+                    </select>
+                </span>
             </div>
             <div>
                 <label>Source</label>
                 <input type="text" th:name="sourceName"
-                       required th:value="${updateNovel.getSource().getName()}">
+                       required th:value="${oldNovelDto.getSourceName()}">
             </div>
             <div>
                 <label>Url</label>
                 <input type="url" th:name="sourceUrl"
-                       required th:value="${updateNovel.getSource().getUrl()}">
+                       required th:value="${oldNovelDto.getSourceUrl()}">
             </div>
             <div>
                 <label>Status</label>
-                <select th:field="*{status}">
+                <select th:name="status">
                     <option th:each="statusEach:${statusSelect}"
                             th:value="${statusEach.getName()}"
                             th:utext="${statusEach.getName()}"></option>

@@ -10,7 +10,6 @@ import com.practice.mynovel.services.StatusService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -28,44 +27,48 @@ public class FixNovelController {
         this.genreService = genreService;
         this.statusService = statusService;
     }
-//add novel
-    @ModelAttribute("novel")
-    public NovelDto novelDto(){
-        return new NovelDto();
-    }
 
+    //add new novel
     @GetMapping("/new")
-    public String getAddNovelForm(Model genreModel, Model statusModel){
+    public String getAddNovelForm(Model genreModel, Model statusModel, Model novelModel) {
+        NovelDto novelDto = new NovelDto(genreService);
+        for (int i = 0; i < 3; i++) {
+            novelDto.addGenre(new Genre());
+        }
+        novelModel.addAttribute("novel", novelDto);
         List<Genre> genreList = genreService.findAll();
         genreModel.addAttribute("genreSelect", genreList);
         List<Status> statusList = statusService.findAll();
-        statusModel.addAttribute("statusSelect" , statusList);
+        statusModel.addAttribute("statusSelect", statusList);
         return "addNovelForm";
     }
 
     @PostMapping("/new")
-    public String processAddNovel(@ModelAttribute("novel") NovelDto novelDto) {
+    public String processAddNovel(NovelDto novelDto) {
         novelService.save(novelDto);
         return "success";
     }
 
     //update novel
     @GetMapping("/all/{id}/update")
-    public String getUpdateNovelForm(@PathVariable Long id, Model novelModel,
-                                     Model genreModel, Model statusModel){
-        Novel novel = novelService.findById(id);
-        novelModel.addAttribute("updateNovel", novel);
+    public String getUpdateNovelForm(@PathVariable Long id,
+                                     Model genreModel, Model statusModel, Model novelDtoModel) {
+
+        Novel oldNovel = novelService.findById(id);
+        NovelDto oldNovelDto = new NovelDto(genreService);
+        oldNovelDto.setNovelValue(oldNovel);
+        novelDtoModel.addAttribute("oldNovelDto", oldNovelDto);
         List<Genre> genreList = genreService.findAll();
         genreModel.addAttribute("genreSelect", genreList);
         List<Status> statusList = statusService.findAll();
-        statusModel.addAttribute("statusSelect" , statusList);
+        statusModel.addAttribute("statusSelect", statusList);
         return "updateNovelForm";
     }
 
     @PostMapping("/all/{id}/update")
-    public String processUpdateNovel(@PathVariable Long id, @ModelAttribute("novel") NovelDto novelDto) {
-        System.out.println("id is : "+ id);
-        novelService.update(novelDto, id);
+    public String processUpdateNovel(@PathVariable Long id, NovelDto oldNovelDto) {
+        System.out.println("id of updated novel is : " + id);
+        novelService.update(oldNovelDto, id);
         return "success";
     }
 }

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
 </head>
 <body>
- <header>
+<header>
   <nav>
     <ul>
       <li th:class="top-left" class="top-left"><a th:href="@{/index}">MyNovel</a></li>
@@ -16,12 +16,12 @@
       <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
       <li th:class="top-left" class="top-left"><a th:href="@{/all}">Novel</a></li>
       <li th:class="top-right" class="top-right">
-        <div sec:authorize="isAuthenticated()" >
-          <a th:href="@{/logout}">Logout</a>
-        </div>
-        <div sec:authorize="!isAuthenticated()">
-          <a href="login">Login</a>
-        </div>
+                <span sec:authorize="isAuthenticated()">
+                    <a th:href="@{/logout}">Logout</a>
+                </span>
+        <span sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/login}">Login</a>
+                </span>
       </li>
       <li th:class="top-right" class="top-right">
         <label><a href="">Search</a></label>

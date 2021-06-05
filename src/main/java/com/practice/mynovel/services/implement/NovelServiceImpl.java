@@ -86,8 +86,12 @@ public class NovelServiceImpl implements NovelService {
         Status status = statusService.findByName(novelDto.getStatus());
         details.setStatus(status);
 
-        Genre genre = genreService.findByName(novelDto.getName());
-        details.getGenreList().add(genre);
+        List<Genre> genreList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            Genre genre = genreService.findByName(novelDto.getGenreList().get(i).getName());
+            genreList.add(genre);
+        }
+        details.setGenreList(genreList);
 
         details.setNovel(novel);
         novel.setDetails(details);
@@ -116,9 +120,14 @@ public class NovelServiceImpl implements NovelService {
         Status status = statusService.findByName(novelDto.getStatus());
         details.setStatus(status);
 
-        Genre genre = genreService.findByName(novelDto.getGenre());
         List<Genre> genreList = new ArrayList<>();
-        genreList.add(genre);
+
+        for (int i = 0; i < 3; i++) {
+            Genre genre = genreService.findByName(novelDto.getGenreList().get(i).getName());
+            if (genreList.contains(genre)){
+                genreList.add(genreService.findByName("-"));
+            }else genreList.add(genre);
+        }
         details.setGenreList(genreList);
 
         details.setNovel(novel);
