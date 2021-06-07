@@ -1,4 +1,4 @@
-package com.practice.mynovel.Dto;
+package com.practice.mynovel.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

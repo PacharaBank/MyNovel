@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -21,6 +18,7 @@ public class Novel extends BaseEntity{
     private String name;
     private String totalChapter;
     private String rate;
+    private String photosSource;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
@@ -28,4 +26,10 @@ public class Novel extends BaseEntity{
 
     @OneToOne(cascade = {CascadeType.ALL})
     private Source source;
+
+    @Transient
+    public String getPhotosImagePath(){
+        if (photosSource == null || getId() == null) return null;
+        return photosSource;
+    }
 }

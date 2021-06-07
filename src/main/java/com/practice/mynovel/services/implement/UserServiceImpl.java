@@ -1,6 +1,6 @@
 package com.practice.mynovel.services.implement;
 
-import com.practice.mynovel.Dto.UserDto;
+import com.practice.mynovel.dto.UserDto;
 import com.practice.mynovel.models.Role;
 import com.practice.mynovel.models.User;
 import com.practice.mynovel.respositories.UserRepository;

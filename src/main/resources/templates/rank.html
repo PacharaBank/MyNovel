@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>AllNovel</title>
+    <title>Rank</title>
     <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}"/>
     <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
 </head>
@@ -13,7 +13,7 @@
         <ul>
             <li th:class="top-left" class="top-left"><a th:href="@{/index}">MyNovel</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/new}">Add Novel</a></li>
-            <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
+            <li th:class="top-left" class="top-left"><a th:href="@{/rank}">Ranking</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/all}">Novel</a></li>
             <li th:class="top-right" class="top-right">
                 <span sec:authorize="isAuthenticated()">
@@ -33,33 +33,7 @@
     </nav>
 </header>
 <main>
-    <section th:class="full-section">
-        <article>
-            <h2 th:class="center">All Novel</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Rate</th>
-                    <th>Total Chapter</th>
-                </tr>
-                </thead>
-                <tbody th:each="eachNovel: ${allNovel}">
-                <td th:class="center">
-                    <a th:href="@{'/all/' + ${eachNovel.getId()}}">
-                        <span th:text="*{eachNovel.getName()}"></span>
-                    </a>
-                </td>
-                <td th:class="center">
-                    <span th:text="*{eachNovel.getRate()}"></span>
-                </td>
-                <td th:class="center">
-                    <span th:text="*{eachNovel.getTotalChapter()}"></span>
-                </td>
-                </tbody>
-            </table>
-        </article>
-    </section>
+
 </main>
 </body>
 </html>

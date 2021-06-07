@@ -35,7 +35,8 @@
 <main>
     <section th:class="full-section">
         <form th:action="@{'/all/' + ${oldNovelDto.getNovel().getId()} + '/update'}"
-              th:object="${oldNovelDto}" method="post">
+              th:object="${oldNovelDto}" method="post"
+              enctype="multipart/form-data">
             <h2 th:class="center">Update novel</h2>
             <div>
                 <label>Name</label>
@@ -83,6 +84,10 @@
                             th:value="${statusEach.getName()}"
                             th:utext="${statusEach.getName()}"></option>
                 </select>
+            </div>
+            <div>
+                <label>Add Cover Photo</label>
+                <input type="file" th:name="image">
             </div>
             <div>
                 <input type="submit" value="submit">

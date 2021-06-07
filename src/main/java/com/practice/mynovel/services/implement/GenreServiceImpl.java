@@ -1,6 +1,6 @@
 package com.practice.mynovel.services.implement;
 
-import com.practice.mynovel.Dto.GenreDto;
+import com.practice.mynovel.dto.GenreDto;
 import com.practice.mynovel.models.Genre;
 import com.practice.mynovel.respositories.GenreRepository;
 import com.practice.mynovel.services.GenreService;

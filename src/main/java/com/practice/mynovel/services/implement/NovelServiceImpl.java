@@ -1,13 +1,21 @@
 package com.practice.mynovel.services.implement;
 
-import com.practice.mynovel.Dto.NovelDto;
+import com.practice.mynovel.dto.NovelDto;
 import com.practice.mynovel.models.*;
 import com.practice.mynovel.respositories.NovelRepository;
 import com.practice.mynovel.services.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -69,7 +77,7 @@ public class NovelServiceImpl implements NovelService {
     }
 
     @Override
-    public Novel save(NovelDto novelDto) {
+    public Novel save(NovelDto novelDto, MultipartFile multipartFile) throws IOException {
         Novel novel = new Novel();
         novel.setName(novelDto.getName());
         novel.setRate(novelDto.getRate());
@@ -96,14 +104,29 @@ public class NovelServiceImpl implements NovelService {
         details.setNovel(novel);
         novel.setDetails(details);
 
+        novel.setPhotosSource("/images/" + uploadImage(multipartFile));
+
         return novelRepository.save(novel);
     }
 
+    private String uploadImage(MultipartFile multipartFile) {
+        String uploadDir = "D:/Java/SpringProject/practice-project/MyNovel/src/main/resources/static/images/";
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        try {
+            Path path = Paths.get(uploadDir + fileName);
+            Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return fileName;
+    }
+
     @Override
-    public Novel update(NovelDto novelDto, Long id) {
+    public Novel update(NovelDto novelDto, Long id, MultipartFile multipartFile) throws IOException{
         Optional<Novel> novelOptional = novelRepository.findById(id);
 
         Novel novel = novelOptional.get();
+
         novel.setName(novelDto.getName());
         novel.setRate(novelDto.getRate());
         novel.setTotalChapter(novelDto.getTotalChapter());
@@ -124,14 +147,16 @@ public class NovelServiceImpl implements NovelService {
 
         for (int i = 0; i < 3; i++) {
             Genre genre = genreService.findByName(novelDto.getGenreList().get(i).getName());
-            if (genreList.contains(genre)){
+            if (genreList.contains(genre)) {
                 genreList.add(genreService.findByName("-"));
-            }else genreList.add(genre);
+            } else genreList.add(genre);
         }
         details.setGenreList(genreList);
 
         details.setNovel(novel);
         novel.setDetails(details);
+
+        novel.setPhotosSource("/images/" + uploadImage(multipartFile));
 
         return novelRepository.save(novel);
     }

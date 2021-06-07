@@ -1,6 +1,6 @@
 package com.practice.mynovel.services;
 
-import com.practice.mynovel.Dto.DetailDto;
+import com.practice.mynovel.dto.DetailDto;
 import com.practice.mynovel.models.Details;
 import com.practice.mynovel.models.Novel;
 

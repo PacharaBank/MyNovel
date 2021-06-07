@@ -13,7 +13,7 @@
         <ul>
             <li th:class="top-left" class="top-left"><a th:href="@{/index}">MyNovel</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/new}">Add Novel</a></li>
-            <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
+            <li th:class="top-left" class="top-left"><a th:href="@{/rank}">Ranking</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/all}">Novel</a></li>
             <li th:class="top-right" class="top-right">
                 <span sec:authorize="isAuthenticated()">
@@ -34,8 +34,8 @@
 </header>
 <main>
     <section th:class="full-section">
-        <form th:action="@{/new}" th:object="${novel}" method="post">
-            <h2>Add new novel</h2>
+        <form th:action="@{/new}" th:object="${novel}" method="post" enctype="multipart/form-data">
+            <h2 th:class="center">Add new novel</h2>
             <div>
                 <label>Name</label>
                 <input type="text" required th:field="*{name}">
@@ -77,6 +77,10 @@
                             th:value="${statusEach.getName()}"
                             th:text="${statusEach.getName()}"></option>
                 </select>
+            </div>
+            <div>
+                <label>Add Cover Photo</label>
+                <input type="file" th:name="image">
             </div>
             <div>
                 <input type="submit" value="submit">

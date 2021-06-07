@@ -18,17 +18,18 @@ public class AllNovelController {
     }
 
     @GetMapping("/all")
-    public String getIndex(Model allNovelModel){
+    public String getIndex(Model allNovelModel) {
         List<Novel> allNovelList = novelService.findAll();
         allNovelModel.addAttribute("allNovel", allNovelList);
         return "allNovel";
     }
 
     @GetMapping("/all/{id}")
-    public String getOneNovel(Model NovelModel, @PathVariable("id") Long id){
+    public String getOneNovel(Model NovelModel, @PathVariable("id") Long id) {
         Novel novel = novelService.findById(id);
-        if (novel != null){
-            System.out.println("find the novel "+novel.getName());
+        if (novel != null) {
+            System.out.println("find the novel : " + novel.getName());
+            System.out.println("Image source : " + novel.getPhotosImagePath());
             NovelModel.addAttribute("novel", novel);
         } else System.out.println("Can not find novel with id : " + id);
         return "showOneNovel";

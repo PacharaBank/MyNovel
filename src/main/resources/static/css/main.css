@@ -43,7 +43,6 @@ textarea {
     margin: auto;
 }
 
-
 .half-section {
     height: auto;
     width: 45%;
@@ -78,13 +77,13 @@ textarea {
     text-align: left;
 }
 
-.full-section {
+.full-section-fit {
     width: fit-content;
     background-color: powderblue;
     margin: auto;
 }
 
-.full-section-big {
+.full-section{
     width: 50%;
     background-color: powderblue;
     margin: auto;

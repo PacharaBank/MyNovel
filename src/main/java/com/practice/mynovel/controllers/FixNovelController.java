@@ -1,6 +1,7 @@
 package com.practice.mynovel.controllers;
 
-import com.practice.mynovel.Dto.NovelDto;
+
+import com.practice.mynovel.dto.NovelDto;
 import com.practice.mynovel.models.Genre;
 import com.practice.mynovel.models.Novel;
 import com.practice.mynovel.models.Status;
@@ -12,7 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -44,8 +48,9 @@ public class FixNovelController {
     }
 
     @PostMapping("/new")
-    public String processAddNovel(NovelDto novelDto) {
-        novelService.save(novelDto);
+    public String processAddNovel(NovelDto novelDto,
+                                  @RequestParam("image")MultipartFile multipartFile) throws IOException {
+        novelService.save(novelDto, multipartFile);
         return "success";
     }
 
@@ -66,9 +71,10 @@ public class FixNovelController {
     }
 
     @PostMapping("/all/{id}/update")
-    public String processUpdateNovel(@PathVariable Long id, NovelDto oldNovelDto) {
+    public String processUpdateNovel(@PathVariable Long id, NovelDto oldNovelDto,
+                                     @RequestParam("image")MultipartFile multipartFile) throws IOException{
         System.out.println("id of updated novel is : " + id);
-        novelService.update(oldNovelDto, id);
+        novelService.update(oldNovelDto, id, multipartFile);
         return "success";
     }
 }

@@ -37,14 +37,15 @@
         <article>
             <h2 th:class="center">Recently Read</h2>
             <div th:class="center">
-                <img src="../static/images/releaseThatWitch.jpg" th:src="@{/images/releaseThatWitch.jpg}"
-                     alt="release that witch" width="450px">
+                <img src="../static/images/releaseThatWitch.jpg"
+                     th:src="@{${novel.getPhotosImagePath()}}"
+                     alt="cover image" width="450px">
             </div>
             <div>
                 <h1 th:text="${novel.getName()}">name</h1>
-                <p th:text="'Total Chapter '+ ':'+ ${novel.getTotalChapter()}" >total chapter</p>
-                <p th:text="'Rating '+ ':' +${novel.getRate()}">rate</p>
-                <p th:text="'Synopsis : ' + ${novel.getDetails().getSynopsis()}">detail_synopsis</p>
+                <p th:text="'Total Chapter : '+ ${novel.getTotalChapter()}">total chapter</p>
+                <p th:text="'Rating : ' +${novel.getRate()}">rate</p>
+                <p th:text="'Sysnopsis : ' + ${novel.getDetails().getSynopsis().toString()}">Synopsis</p>
                 <div>
                     <span>Genre : </span>
                     <tr th:each="genre: ${novel.getDetails().getGenreList()}">
@@ -66,11 +67,11 @@
         </article>
     </section>
     <!--login/logout -->
-<!--    <section>-->
-<!--        <div>-->
-<!--            <sec:authentication property="principal.username" />-->
-<!--        </div>-->
-<!--    </section>-->
+    <!--    <section>-->
+    <!--        <div>-->
+    <!--            <sec:authentication property="principal.username" />-->
+    <!--        </div>-->
+    <!--    </section>-->
 </main>
 </body>
 </html>

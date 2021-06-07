@@ -1,6 +1,6 @@
 package com.practice.mynovel.controllers;
 
-import com.practice.mynovel.Dto.UserDto;
+import com.practice.mynovel.dto.UserDto;
 import com.practice.mynovel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

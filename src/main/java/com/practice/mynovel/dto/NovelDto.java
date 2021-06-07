@@ -1,4 +1,4 @@
-package com.practice.mynovel.Dto;
+package com.practice.mynovel.dto;
 
 import com.practice.mynovel.models.Genre;
 import com.practice.mynovel.models.Novel;
