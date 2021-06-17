@@ -11,6 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
+
 public class NovelDto {
     private final GenreService genreService;
 

@@ -13,7 +13,6 @@
         <ul>
             <li th:class="top-left" class="top-left"><a th:href="@{/index}">MyNovel</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/new}">Add Novel</a></li>
-            <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/all}">Novel</a></li>
             <li th:class="top-right" class="top-right">
                 <span sec:authorize="isAuthenticated()">
@@ -23,25 +22,26 @@
                     <a th:href="@{/login}">Login</a>
                 </span>
             </li>
-            <li th:class="top-right" class="top-right">
-                <label><a href="">Search</a></label>
-            </li>
-            <li th:class="top-right" class="top-right">
-                <input type="text">
-            </li>
+            <form method="post" th:action="@{/search}" >
+                <li th:class="top-right" class="top-right">
+                    <button type="submit">Search</button>
+                </li>
+                <li th:class="top-right" class="top-right">
+                    <input type="text" name="novelName">
+                </li>
+            </form>
         </ul>
     </nav>
 </header>
 <main>
     <section th:class="full-section">
         <article>
-            <h2 th:class="center">Recently Read</h2>
+            <h2 th:class="center" th:text="${novel.getName()}">name</h2>
             <div th:class="center">
                 <img src="../static/images/releaseThatWitch.jpg" th:src="@{${novel.getPhotosImagePath()}}"
                      alt="cover picture" width="450px">
             </div>
             <div>
-                <h2 th:text="${novel.getName()}">name</h2>
                 <p th:text="'Total Chapter : ' + ${novel.getTotalChapter()}"></p>
                 <p th:text="'Rating :' + ${novel.getRate()}"></p>
                 <p th:text="'Synopsis : ' + ${novel.getDetails().getSynopsis()}"></p>

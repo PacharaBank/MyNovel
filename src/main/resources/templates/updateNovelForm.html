@@ -13,7 +13,6 @@
         <ul>
             <li th:class="top-left" class="top-left"><a th:href="@{/index}">MyNovel</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/new}">Add Novel</a></li>
-            <li th:class="top-left" class="top-left"><a href="">Ranking</a></li>
             <li th:class="top-left" class="top-left"><a th:href="@{/all}">Novel</a></li>
             <li th:class="top-right" class="top-right">
                 <span sec:authorize="isAuthenticated()">
@@ -23,12 +22,14 @@
                     <a th:href="@{/login}">Login</a>
                 </span>
             </li>
-            <li th:class="top-right" class="top-right">
-                <label><a href="">Search</a></label>
-            </li>
-            <li th:class="top-right" class="top-right">
-                <input type="text">
-            </li>
+            <form method="post" th:action="@{/search}" >
+                <li th:class="top-right" class="top-right">
+                    <button type="submit">Search</button>
+                </li>
+                <li th:class="top-right" class="top-right">
+                    <input type="text" name="novelName">
+                </li>
+            </form>
         </ul>
     </nav>
 </header>

@@ -72,20 +72,20 @@ textarea {
     float: right;
     height: auto;
     width: 45%;
-    background-color: powderblue;
+    background-color: white;
     padding: 5px;
     text-align: left;
 }
 
 .full-section-fit {
     width: fit-content;
-    background-color: powderblue;
+    background-color: white;
     margin: auto;
 }
 
 .full-section{
     width: 50%;
-    background-color: powderblue;
+    background-color: white;
     margin: auto;
 }
 

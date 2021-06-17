@@ -1,0 +1,27 @@
+h1 {
+    color: #426ce8;
+    font-family: "Great Vibes", cursive;
+    font-size: 120px;
+    line-height: 130px;
+    font-weight: normal;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
+}
+
+.index-section{
+    width: 80%;
+    background-color: white;
+    margin: auto;
+}
+
+p {
+    color: #7a7c7f;
+    font-size: 29px;
+    font-family: "Libre Baskerville", serif;
+    line-height: 45px;
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
+    padding-top: 20px;
+}

@@ -162,6 +162,11 @@ public class NovelServiceImpl implements NovelService {
     }
 
     @Override
+    public List<Novel> findAllByNameLike(String name) {
+        return novelRepository.findAllByNameLike(name);
+    }
+
+    @Override
     public Novel findByName(String name) {
         return novelRepository.findByName(name);
     }
