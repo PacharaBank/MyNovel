@@ -20,7 +20,7 @@ Use the search bar on the top or simply select from this table to get informatio
 Read some description or directly go to the source of the book via below link.
 ![oneNovel](https://user-images.githubusercontent.com/75736525/122549121-5796c780-d05c-11eb-9182-6b187177aab8.PNG)
 
-### Prerequisites
+## Prerequisites
 * Java 8 or newer.
 * MyNovel uses MySql as a database and doesn't provide in-memory database.
 
