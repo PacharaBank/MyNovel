@@ -51,6 +51,11 @@ public class FixNovelController {
     public String processAddNovel(NovelDto novelDto,
                                   @RequestParam("image")MultipartFile multipartFile) throws IOException {
         novelService.save(novelDto, multipartFile);
+        return "redirect:/success";
+    }
+
+    @GetMapping("/success")
+    public String successPage(){
         return "success";
     }
 

@@ -34,35 +34,39 @@
     </nav>
 </header>
 <main>
-    <section th:class="full-section">
-        <article>
-            <h2 th:class="center" th:text="${novel.getName()}">name</h2>
-            <div th:class="center">
-                <img src="../static/images/releaseThatWitch.jpg" th:src="@{${novel.getPhotosImagePath()}}"
-                     alt="cover picture" width="450px">
+        <div th:class="oneNovel-section">
+            <div th:class="margin">
+                <h2 th:class="center" th:text="${novel.getName()}">name</h2>
+                <div th:class="center">
+                    <img src="../static/images/releaseThatWitch.jpg" th:src="@{${novel.getPhotosImagePath()}}"
+                         alt="cover picture" width="450px">
+                </div>
+                <div>
+                    <p th:text="'Total Chapter : ' + ${novel.getTotalChapter()}"></p>
+                    <p th:text="'Rating :' + ${novel.getRate()}"></p>
+                    <div th:class="break-word">
+                        <div th:text="'Synopsis : ' + ${novel.getDetails().getSynopsis()}">
+                        </div>
+                    </div>
+<!--                    <p th:text="'Synopsis : ' + ${novel.getDetails().getSynopsis()}"></p>-->
+                    <div>
+                        <span>Tag : </span>
+                        <tr th:each="genre: ${novel.getDetails().getGenreList()}">
+                            <td th:if="${genre.getName()!='-'}" th:text="${genre.getName()}"></td>
+                        </tr>
+                    </div>
+                    <p th:text="'Status : ' + ${novel.getDetails().getStatus().getName()}"></p>
+                    <div>
+                        <span>Source : </span>
+                        <a th:href="${novel.getSource().getUrl()}"
+                           th:text="${novel.getSource().getName()}"></a>
+                    </div>
+                </div>
+                <div>
+                    <a th:href="@{'/all/' + ${novel.getId()} + '/update'}"><input type="button" value="Update"></a>
+                </div>
             </div>
-            <div>
-                <p th:text="'Total Chapter : ' + ${novel.getTotalChapter()}"></p>
-                <p th:text="'Rating :' + ${novel.getRate()}"></p>
-                <p th:text="'Synopsis : ' + ${novel.getDetails().getSynopsis()}"></p>
-                <p>
-                    <span>Tag : </span>
-                    <tr th:each="genre: ${novel.getDetails().getGenreList()}">
-                        <td th:if="${genre.getName()!='-'}" th:text="${genre.getName()}"></td>
-                    </tr>
-                </p>
-                <p th:text="'Status : ' + ${novel.getDetails().getStatus().getName()}"></p>
-                <p>
-                    <span>Source : </span>
-                    <a th:href="${novel.getSource().getUrl()}"
-                       th:text="${novel.getSource().getName()}"></a>
-                </p>
-            </div>
-            <div>
-                <a th:href="@{'/all/' + ${novel.getId()} + '/update'}"><input type="button" value="Update"></a>
-            </div>
-        </article>
-    </section>
+        </div>
 </main>
 </body>
 </html>

@@ -34,60 +34,63 @@
     </nav>
 </header>
 <main>
-    <section th:class="full-section">
-        <form th:action="@{/new}" th:object="${novel}" method="post" enctype="multipart/form-data">
-            <h2 th:class="center">Add new novel</h2>
-            <div>
-                <label>Name</label>
-                <input type="text" required th:field="*{name}">
-            </div>
-            <div>
-                <label>Total Chapter</label>
-                <input type="text" required th:field="*{totalChapter}">
-            </div>
-            <div>
-                <label>Rating</label>
-                <input type="text" required th:field="*{rate}">
-            </div>
-            <div>
-                <label>Synopsis</label>
-                <textarea th:field="*{synopsis}" required></textarea>
-            </div>
-            <div>
-                <label>Genre</label>
-                <span th:each="genre, itemStat : *{genreList}">
+    <div th:class="styled-box">
+        <div th:class="margin">
+            <form th:action="@{/new}" th:object="${novel}" method="post" enctype="multipart/form-data">
+                <h2 th:class="center">Add new novel</h2>
+                <div th:class="padding-vertical">
+                    <label>Name</label>
+                    <input type="text" required th:field="*{name}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Total Chapter</label>
+                    <input type="text" required th:field="*{totalChapter}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Rating</label>
+                    <input type="text" required th:field="*{rate}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Synopsis</label>
+                    <textarea th:class="fix-size" rows="10" cols="50" th:field="*{synopsis}" required></textarea>
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Genre</label>
+                    <span th:each="genre, itemStat : *{genreList}">
                     <select th:field="*{genreList[__${itemStat.index}__].name}">
                         <option th:each="genreEach:${genreSelect}"
                                 th:value="${genreEach.getName()}"
                                 th:text="${genreEach.getName()}"></option>
                     </select>
                 </span>
-            </div>
-            <div>
-                <label>Source</label>
-                <input type="text" required th:field="*{sourceName}">
-            </div>
-            <div>
-                <label>Url</label>
-                <input type="url" required th:field="*{sourceUrl}">
-            </div>
-            <div>
-                <label>Status</label>
-                <select th:field="*{status}">
-                    <option th:each="statusEach:${statusSelect}"
-                            th:value="${statusEach.getName()}"
-                            th:text="${statusEach.getName()}"></option>
-                </select>
-            </div>
-            <div>
-                <label>Add Cover Photo</label>
-                <input type="file" th:name="image">
-            </div>
-            <div>
-                <input type="submit" value="submit">
-            </div>
-        </form>
-    </section>
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Source</label>
+                    <input type="text" required th:field="*{sourceName}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Url</label>
+                    <input type="url" required th:field="*{sourceUrl}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Status</label>
+                    <select th:field="*{status}">
+                        <option th:each="statusEach:${statusSelect}"
+                                th:value="${statusEach.getName()}"
+                                th:text="${statusEach.getName()}"></option>
+                    </select>
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Add Cover Photo</label>
+                    <input type="file" th:name="image">
+                </div>
+                <div th:class="padding-vertical">
+                    <input type="submit" value="submit">
+                </div>
+            </form>
+        </div>
+
+    </div>
 </main>
 </body>
 </html>

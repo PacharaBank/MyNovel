@@ -34,30 +34,37 @@
     </nav>
 </header>
 <main>
-    <section>
-        <form th:action="@{/register}" method="post" th:object="${user}">
-            <div>
-                <label>Firstname</label>
-                <input type="text" required th:field="*{firstName}">
-            </div>
-            <div>
-                <label>Lastname</label>
-                <input type="text" required th:field="*{lastName}">
-            </div>
-            <div>
-                <label>Email</label>
-                <input type="text" required th:field="*{email}">
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="password" required th:field="*{password}">
-            </div>
-            <div>
-                <input type="submit" value="submit">
-                <a href="/login" th:href="@{/login}">Login</a>
-            </div>
-        </form>
-    </section>
+    <div th:class="styled-box">
+        <div th:class="margin">
+            <form th:action="@{/register}" method="post" th:object="${user}">
+                <div th:class="center">
+                    <h2>Register</h2>
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Firstname</label>
+                    <input type="text" required th:field="*{firstName}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Lastname</label>
+                    <input type="text" required th:field="*{lastName}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Email</label>
+                    <input type="text" required th:field="*{email}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Password</label>
+                    <input type="password" required th:field="*{password}">
+                </div>
+                <div th:class="padding-vertical">
+                    <div th:class="center">
+                        <input type="submit" value="submit">
+                        <a href="/login" th:href="@{/login}">Login</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </main>
 
 </body>

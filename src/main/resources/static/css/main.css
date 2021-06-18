@@ -7,39 +7,22 @@ body {
     padding-right: 10%;
 }
 
-div {
-    padding-bottom: 10px;
-}
-
-main {
-    padding-top: 10px;
-}
-
 form {
     margin: auto;
-    /*border: 1px solid black;*/
     width: fit-content;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 label {
     display: inline-block;
-    width: 100px;
+    width: 150px;
     text-align: left;
-    float: left;
 }
 
-textarea {
-    width: 350px;
-    height: 300px;
+.fix-size {
     resize: none;
 }
 
 .pos-mid {
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 3%;
     margin: auto;
 }
 
@@ -47,7 +30,6 @@ textarea {
     height: auto;
     width: 45%;
     background-color: powderblue;
-    padding: 5px;
     text-align: left;
 }
 
@@ -56,7 +38,6 @@ textarea {
     height: auto;
     width: 45%;
     background-color: powderblue;
-    padding: 5px;
     text-align: left;
 }
 
@@ -73,7 +54,6 @@ textarea {
     height: auto;
     width: 45%;
     background-color: white;
-    padding: 5px;
     text-align: left;
 }
 
@@ -93,12 +73,33 @@ textarea {
     text-align: center;
 }
 
-
-table {
-    width: 100%;
+.padding-vertical{
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-thead {
-    text-align: center;
+.styled-box {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    /*min-width: 400px;*/
+    width: fit-content;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.break-word{
+    word-wrap: break-word;
+}
+
+.oneNovel-section{
+    width: 60%;
+    background-color: white;
+    margin: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.margin{
+    margin: 25px;
 }
 

@@ -34,28 +34,30 @@
     </nav>
 </header>
 <main>
-    <section th:class="full-section">
-        <form th:class="center" th:action="@{/login}" method="post">
-            <h2>Please Login</h2>
-            <div th:if="${param.error}">
-                <span>Invalid Username or Password</span>
+    <div th:class="styled-box">
+        <div th:class="margin">
+            <form th:class="center" th:action="@{/login}" method="post">
+                <h2>Please Login</h2>
+                <div th:class="padding-vertical" th:if="${param.error}">
+                    <span>Invalid Username or Password</span>
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Username  </label>
+                    <input type="text" name="username" placeholder="Enter Email">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Password  </label>
+                    <input type="text" name="password" placeholder="Enter Password">
+                </div>
+                <div th:class="padding-vertical">
+                    <input type="submit" value="Log In">
+                </div>
+            </form>
+            <div th:class="center">
+                <span>New user ? <a href="/register" th:href="@{/register}">Register</a></span>
             </div>
-            <div>
-                <label>Username  </label>
-                <input type="text" name="username" placeholder="Enter Email">
-            </div>
-            <div>
-                <label>Password  </label>
-                <input type="text" name="password" placeholder="Enter Password">
-            </div>
-            <div>
-                <input type="submit" value="Log In">
-            </div>
-        </form>
-        <div th:class="center">
-            <span>New user ? <a href="/register" th:href="@{/register}">Register</a></span>
         </div>
-    </section>
+    </div>
 </main>
 
 </body>

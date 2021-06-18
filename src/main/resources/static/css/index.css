@@ -16,7 +16,7 @@ h1 {
     margin: auto;
 }
 
-p {
+.style-word {
     color: #7a7c7f;
     font-size: 29px;
     font-family: "Libre Baskerville", serif;
@@ -24,4 +24,5 @@ p {
     text-align: center;
     text-shadow: 0 1px 1px #fff;
     padding-top: 20px;
+    word-wrap: break-word;
 }

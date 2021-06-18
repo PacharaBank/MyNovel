@@ -34,67 +34,70 @@
     </nav>
 </header>
 <main>
-    <section th:class="full-section">
-        <form th:action="@{'/all/' + ${oldNovelDto.getNovel().getId()} + '/update'}"
-              th:object="${oldNovelDto}" method="post"
-              enctype="multipart/form-data">
-            <h2 th:class="center">Update novel</h2>
-            <div>
-                <label>Name</label>
+    <div th:class="styled-box">
+        <div th:class="margin">
+            <form th:action="@{'/all/' + ${oldNovelDto.getNovel().getId()} + '/update'}"
+                  th:object="${oldNovelDto}" method="post"
+                  enctype="multipart/form-data">
+                <h2 th:class="center">Update novel</h2>
+                <div th:class="padding-vertical">
+                    <label>Name</label>
                     <input type="text" required th:name="name"
                            th:value="${oldNovelDto.getName()}"/>
-            </div>
-            <div>
-                <label>Total Chapter</label>
-                <input type="text" th:name="totalChapter"
-                       required th:value="${oldNovelDto.getTotalChapter()}">
-            </div>
-            <div>
-                <label>Rating</label>
-                <input type="text" th:name="rate" required th:value="${oldNovelDto.getRate()}">
-            </div>
-            <div>
-                <label>Synopsis</label>
-                <textarea th:name="synopsis"
-                          th:text="${oldNovelDto.getSynopsis()}" required></textarea>
-            </div>
-            <div>
-                <label>Genre</label>
-                <span th:each="genre, itemStat : *{genreList}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Total Chapter</label>
+                    <input type="text" th:name="totalChapter"
+                           required th:value="${oldNovelDto.getTotalChapter()}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Rating</label>
+                    <input type="text" th:name="rate" required th:value="${oldNovelDto.getRate()}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Synopsis</label>
+                    <textarea th:class="fix-size" rows="10" cols="50" th:name="synopsis"
+                              th:text="${oldNovelDto.getSynopsis()}" required></textarea>
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Genre</label>
+                    <span th:each="genre, itemStat : *{genreList}">
                     <select th:field="*{genreList[__${itemStat.index}__].name}">
                         <option th:each="genreEach:${genreSelect}"
                                 th:value="${genreEach.getName()}"
                                 th:text="${genreEach.getName()}"></option>
                     </select>
                 </span>
-            </div>
-            <div>
-                <label>Source</label>
-                <input type="text" th:name="sourceName"
-                       required th:value="${oldNovelDto.getSourceName()}">
-            </div>
-            <div>
-                <label>Url</label>
-                <input type="url" th:name="sourceUrl"
-                       required th:value="${oldNovelDto.getSourceUrl()}">
-            </div>
-            <div>
-                <label>Status</label>
-                <select th:name="status">
-                    <option th:each="statusEach:${statusSelect}"
-                            th:value="${statusEach.getName()}"
-                            th:utext="${statusEach.getName()}"></option>
-                </select>
-            </div>
-            <div>
-                <label>Add Cover Photo</label>
-                <input type="file" th:name="image">
-            </div>
-            <div>
-                <input type="submit" value="submit">
-            </div>
-        </form>
-    </section>
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Source</label>
+                    <input type="text" th:name="sourceName"
+                           required th:value="${oldNovelDto.getSourceName()}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Url</label>
+                    <input type="url" th:name="sourceUrl"
+                           required th:value="${oldNovelDto.getSourceUrl()}">
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Status</label>
+                    <select th:name="status">
+                        <option th:each="statusEach:${statusSelect}"
+                                th:value="${statusEach.getName()}"
+                                th:utext="${statusEach.getName()}"></option>
+                    </select>
+                </div>
+                <div th:class="padding-vertical">
+                    <label>Add Cover Photo</label>
+                    <input type="file" th:name="image">
+                </div>
+                <div th:class="padding-vertical">
+                    <input type="submit" value="submit">
+                </div>
+            </form>
+        </div>
+
+    </div>
 </main>
 </body>
 </html>
