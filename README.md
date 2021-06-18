@@ -5,8 +5,7 @@ It is a web application for sharing and collecting favorite books from all sourc
 ## Description
 This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
 This project use MySql as a database. You will not get the data from source code.
-
-![index](https://user-images.githubusercontent.com/75736525/122547797-c115d680-d05a-11eb-815a-32ca5c3a485c.PNG)
+![index](https://user-images.githubusercontent.com/75736525/122552715-d7269580-d060-11eb-9003-7cfb5e7a84d0.PNG)
 
 ## Getting Started
 Register and log in first in order to get access to other pages.
