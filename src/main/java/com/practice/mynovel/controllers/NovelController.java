@@ -20,16 +20,34 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-public class FixNovelController {
+public class NovelController {
     private final NovelService novelService;
     private final GenreService genreService;
     private final StatusService statusService;
 
-    public FixNovelController(NovelService novelService, GenreService genreService,
-                              StatusService statusService) {
+    public NovelController(NovelService novelService, GenreService genreService,
+                           StatusService statusService) {
         this.novelService = novelService;
         this.genreService = genreService;
         this.statusService = statusService;
+    }
+
+    @GetMapping("/all")
+    public String getIndex(Model allNovelModel) {
+        List<Novel> allNovelList = novelService.findAll();
+        allNovelModel.addAttribute("allNovel", allNovelList);
+        return "allNovel";
+    }
+
+    @GetMapping("/all/{id}")
+    public String getOneNovel(Model NovelModel, @PathVariable("id") Long id) {
+        Novel novel = novelService.findById(id);
+        if (novel != null) {
+            System.out.println("find the novel : " + novel.getName());
+            System.out.println("Image source : " + novel.getPhotosImagePath());
+            NovelModel.addAttribute("novel", novel);
+        } else System.out.println("Can not find novel with id : " + id);
+        return "showOneNovel";
     }
 
     //add new novel

@@ -97,7 +97,9 @@ public class NovelServiceImpl implements NovelService {
         List<Genre> genreList = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             Genre genre = genreService.findByName(novelDto.getGenreList().get(i).getName());
-            genreList.add(genre);
+            if (genreList.contains(genre)) {
+                genreList.add(genreService.findByName("-"));
+            } else genreList.add(genre);
         }
         details.setGenreList(genreList);
 
@@ -107,18 +109,6 @@ public class NovelServiceImpl implements NovelService {
         novel.setPhotosSource("/images/" + uploadImage(multipartFile));
 
         return novelRepository.save(novel);
-    }
-
-    private String uploadImage(MultipartFile multipartFile) {
-        String uploadDir = "D:/Java/SpringProject/practice-project/MyNovel/src/main/resources/static/images/";
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-        try {
-            Path path = Paths.get(uploadDir + fileName);
-            Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return fileName;
     }
 
     @Override
@@ -156,9 +146,24 @@ public class NovelServiceImpl implements NovelService {
         details.setNovel(novel);
         novel.setDetails(details);
 
-        novel.setPhotosSource("/images/" + uploadImage(multipartFile));
+        if (!multipartFile.isEmpty()) {
+            System.out.println("update new image");
+            novel.setPhotosSource("/images/" + uploadImage(multipartFile));
+        }else System.out.println("No new image found, use same image");
 
         return novelRepository.save(novel);
+    }
+
+    private String uploadImage(MultipartFile multipartFile) {
+        String uploadDir = "D:/Java/SpringProject/practice-project/MyNovel/src/main/resources/static/images/";
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        try {
+            Path path = Paths.get(uploadDir + fileName);
+            Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return fileName;
     }
 
     @Override

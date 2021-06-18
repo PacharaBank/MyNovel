@@ -14,21 +14,17 @@ import java.util.List;
 
 public class NovelDto {
     private final GenreService genreService;
-
     private String name;
     private String totalChapter;
     private String rate;
+    private String photosSource;
 
     //details
     private String synopsis;
     private Novel novel;
     private List<Genre> genreList = new ArrayList<>();
-
-    public void addGenre(Genre genre) {
-        this.genreList.add(genre);
-    }
-
     private String status;
+
     //source
     private String sourceName;
     private String sourceUrl;
@@ -37,10 +33,15 @@ public class NovelDto {
         this.genreService = genreService;
     }
 
+    public void addGenre(Genre genre) {
+        this.genreList.add(genre);
+    }
+
     public void setNovelValue(Novel setNovel){
         this.name = setNovel.getName();
         this.totalChapter = setNovel.getTotalChapter();
         this.rate = setNovel.getRate();
+        this.photosSource = setNovel.getPhotosSource();
         this.synopsis = setNovel.getDetails().getSynopsis();
         this.novel = setNovel;
         this.genreList = setNovel.getDetails().getGenreList();

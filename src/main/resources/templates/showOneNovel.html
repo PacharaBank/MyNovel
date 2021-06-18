@@ -34,22 +34,22 @@
     </nav>
 </header>
 <main>
-        <div th:class="oneNovel-section">
+        <div th:class="styled-section">
             <div th:class="margin">
-                <h2 th:class="center" th:text="${novel.getName()}">name</h2>
+                <div th:class="padding-vertical">
+                    <h2 th:class="center" th:text="${novel.getName()}">name</h2>
+                </div>
                 <div th:class="center">
                     <img src="../static/images/releaseThatWitch.jpg" th:src="@{${novel.getPhotosImagePath()}}"
                          alt="cover picture" width="450px">
                 </div>
                 <div>
                     <p th:text="'Total Chapter : ' + ${novel.getTotalChapter()}"></p>
-                    <p th:text="'Rating :' + ${novel.getRate()}"></p>
+                    <p th:text="'Rating : ' + ${novel.getRate()}"></p>
                     <div th:class="break-word">
-                        <div th:text="'Synopsis : ' + ${novel.getDetails().getSynopsis()}">
-                        </div>
+                    <p th:text="'Synopsis : ' + ${novel.getDetails().getSynopsis()}"></p>
                     </div>
-<!--                    <p th:text="'Synopsis : ' + ${novel.getDetails().getSynopsis()}"></p>-->
-                    <div>
+                    <div th:class="padding-vertical">
                         <span>Tag : </span>
                         <tr th:each="genre: ${novel.getDetails().getGenreList()}">
                             <td th:if="${genre.getName()!='-'}" th:text="${genre.getName()}"></td>
@@ -62,8 +62,11 @@
                            th:text="${novel.getSource().getName()}"></a>
                     </div>
                 </div>
-                <div>
-                    <a th:href="@{'/all/' + ${novel.getId()} + '/update'}"><input type="button" value="Update"></a>
+                <div th:class="padding-vertical">
+                    <div th:class="center">
+                        <a th:href="@{'/all/' + ${novel.getId()} + '/update'}"><input
+                                type="button" value="Update"></a>
+                    </div>
                 </div>
             </div>
         </div>

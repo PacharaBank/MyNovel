@@ -37,7 +37,9 @@
     <div th:class="styled-box">
         <div th:class="margin">
             <form th:class="center" th:action="@{/login}" method="post">
-                <h2>Please Login</h2>
+                <div th:class="padding-vertical">
+                    <h2>Please Login</h2>
+                </div>
                 <div th:class="padding-vertical" th:if="${param.error}">
                     <span>Invalid Username or Password</span>
                 </div>
@@ -53,8 +55,10 @@
                     <input type="submit" value="Log In">
                 </div>
             </form>
-            <div th:class="center">
-                <span>New user ? <a href="/register" th:href="@{/register}">Register</a></span>
+            <div th:class="padding-vertical">
+                <div th:class="center">
+                    <span>New user ? <a href="/register" th:href="@{/register}">Register</a></span>
+                </div>
             </div>
         </div>
     </div>

@@ -56,7 +56,7 @@ public class DetailServiceImpl implements DetailService {
 
     @Override
     public Details save(Details object) {
-       return detailsRepository.save(object);
+        return detailsRepository.save(object);
     }
 
     @Override

@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
-public interface NovelService extends CrudService<Novel, NovelDto, Long> {
+public interface NovelService extends CrudService<Novel, Long> {
     Novel findByName(String name);
     void deleteByName(String name);
     Novel save(NovelDto novelDto, MultipartFile multipartFile) throws IOException;

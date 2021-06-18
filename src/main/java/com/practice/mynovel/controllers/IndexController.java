@@ -34,7 +34,7 @@ public class IndexController {
     }
 
     @PostMapping("/search")
-    public String processSearch(@RequestParam(required = true) String novelName
+    public String processSearch(@RequestParam(value = "novelName") String novelName
             , Model model) {
         System.out.println("searching for novel : " + novelName);
         if (novelName.equals("")){

@@ -5,6 +5,7 @@ html {
 body {
     padding-left: 10%;
     padding-right: 10%;
+    font-family: sans-serif;
 }
 
 form {
@@ -23,49 +24,6 @@ label {
 }
 
 .pos-mid {
-    margin: auto;
-}
-
-.half-section {
-    height: auto;
-    width: 45%;
-    background-color: powderblue;
-    text-align: left;
-}
-
-.float-left {
-    float: left;
-    height: auto;
-    width: 45%;
-    background-color: powderblue;
-    text-align: left;
-}
-
-.float-left-only {
-    float: left;
-}
-
-.float-right-only {
-    float: right;
-}
-
-.float-right {
-    float: right;
-    height: auto;
-    width: 45%;
-    background-color: white;
-    text-align: left;
-}
-
-.full-section-fit {
-    width: fit-content;
-    background-color: white;
-    margin: auto;
-}
-
-.full-section{
-    width: 50%;
-    background-color: white;
     margin: auto;
 }
 
@@ -90,9 +48,10 @@ label {
 
 .break-word{
     word-wrap: break-word;
+    text-align: left;
 }
 
-.oneNovel-section{
+.styled-section{
     width: 60%;
     background-color: white;
     margin: auto;

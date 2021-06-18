@@ -7,7 +7,8 @@ import com.practice.mynovel.models.Status;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -41,30 +42,11 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadData() {
-
         Novel releaseThatWitch = new Novel();
         releaseThatWitch.setName("Release That Witch");
         releaseThatWitch.setRate("5");
         releaseThatWitch.setTotalChapter("500");
-
-        Genre action = new Genre("Action");
-        Genre adventure = new Genre("Adventure");
-        Genre fantasy = new Genre("Fantasy");
-        genreService.save(action);
-        genreService.save(adventure);
-        genreService.save(fantasy);
-
-        Status finished = new Status("Finished");
-        Status ongoing = new Status("Ongoing");
-        Status abandoned = new Status("Abandoned");
-        statusService.save(finished);
-        statusService.save(ongoing);
-        statusService.save(abandoned);
-
-//        Source webNovel = new Source("WebNovel",
-//                "https://www.webnovel.com/book/release-that-witch_7931338406001705");
-//        releaseThatWitch.setSource(webNovel);
-
+        releaseThatWitch.setPhotosSource("/images/releaseThatWitch.jpg");
         Details releaseWithDetail = new Details();
         releaseWithDetail.setSynopsis(
                 "Roland, a prince regarded as hopeless by his own father and assigned to " +
@@ -73,8 +55,10 @@ public class DataLoader implements CommandLineRunner {
                         " for the throne and absolute control over the kingdom. Join Roland" +
                         " as he befriends and allies with witches and, through fighting and" +
                         " even farming, pushes back invaders coming from the realm of evil.");
-        releaseWithDetail.setGenreList(Arrays.asList(action, adventure, fantasy));
-        releaseWithDetail.setStatus(finished);
+        List<Genre> genreList = new ArrayList<>();
+        genreList.add(genreService.findByName("Action"));
+        releaseWithDetail.setGenreList(genreList);
+        releaseWithDetail.setStatus(statusService.findByName("Finished"));
 
         releaseWithDetail.setNovel(releaseThatWitch);
         releaseThatWitch.setDetails(releaseWithDetail);
