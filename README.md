@@ -17,7 +17,7 @@ Share or add your favorite book here.
 Use the search bar on the top or simply select from this table to get information about a book.
 ![all](https://user-images.githubusercontent.com/75736525/122548795-ff5fc580-d05b-11eb-9435-3869a768b5f2.PNG)
 
-Read some description or directly go to the source of the book via below link.
+Read some description or directly go to the source of the book via below link. You can also update the book by clinking update button.
 ![oneNovel](https://user-images.githubusercontent.com/75736525/122549121-5796c780-d05c-11eb-9182-6b187177aab8.PNG)
 
 ## Prerequisites
